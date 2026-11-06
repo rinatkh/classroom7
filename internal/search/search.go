@@ -1,7 +1,10 @@
 // Package search показывает линейный и бинарный поиск на одном контракте.
 package search
 
-import "fmt"
+import (
+	"fmt"
+	"slices"
+)
 
 // Result описывает итог поиска и позволяет увидеть реальное число сравнений.
 type Result struct {
@@ -19,14 +22,8 @@ type Step struct {
 	Decision string
 }
 
-// LinearSearch проверяет элементы слева направо.
-//
-// Лучший случай — нужное значение стоит первым: O(1).
-// Худший случай — значение последнее или отсутствует: O(n).
-// Дополнительная память — O(1).
-//
-// Как не нужно: нельзя написать O(1) только потому, что внутри цикла одно
-// сравнение. Это сравнение может повториться n раз.
+// LinearSearch возвращает первое совпадение или Index=-1, Found=false.
+// Время от O(1) до O(n), дополнительная память O(1).
 func LinearSearch(values []int, target int) Result {
 	for index, value := range values {
 		if value == target {
@@ -36,13 +33,9 @@ func LinearSearch(values []int, target int) Result {
 	return Result{Index: -1, Found: false, Comparisons: len(values)}
 }
 
-// BinarySearch ищет target в срезе, отсортированном по возрастанию.
-//
-// На каждом шаге остаётся примерно половина диапазона, поэтому худшее время —
-// O(log n), а дополнительная память итеративной версии — O(1).
-//
-// Как не нужно: нельзя запускать бинарный поиск на неотсортированном срезе.
-// Код может завершиться без panic, но вернуть неверный ответ.
+// BinarySearch ищет в неубывающем срезе; при повторах допустим любой индекс.
+// Активный диапазон [left, right): правая граница не входит.
+// Comparisons считает проверенные середины. Время до O(log n), память O(1).
 func BinarySearch(values []int, target int) Result {
 	left, right := 0, len(values)
 	comparisons := 0
@@ -90,11 +83,8 @@ func BinarySearchTrace(values []int, target int) (Result, []Step) {
 	return Result{Index: -1, Found: false, Comparisons: len(steps)}, steps
 }
 
-// SearchInsert возвращает индекс найденного target или место, куда его нужно
-// вставить, чтобы сохранить сортировку. Это поиск левой границы за O(log n).
-//
-// Как не нужно: после неудачного BinarySearch нельзя без дополнительной логики
-// считать последний middle правильной позицией вставки.
+// SearchInsert возвращает первую позицию со значением >= target, включая len(values).
+// Вход неубывающий; время O(log n) на непустом входе, память O(1).
 func SearchInsert(values []int, target int) int {
 	left, right := 0, len(values)
 	for left < right {
@@ -113,6 +103,7 @@ func Example() string {
 	values := []int{3, 7, 11, 15, 19, 23, 27}
 	linear := LinearSearch(values, 23)
 	binary := BinarySearch(values, 23)
-	return fmt.Sprintf("target=23: linear index=%d comparisons=%d; binary index=%d comparisons=%d; insert(20)=%d",
-		linear.Index, linear.Comparisons, binary.Index, binary.Comparisons, SearchInsert(values, 20))
+	standardIndex, standardFound := slices.BinarySearch(values, 23)
+	return fmt.Sprintf("target=23: linear index=%d comparisons=%d; binary index=%d comparisons=%d; insert(20)=%d; slices.BinarySearch=%d/%t",
+		linear.Index, linear.Comparisons, binary.Index, binary.Comparisons, SearchInsert(values, 20), standardIndex, standardFound)
 }

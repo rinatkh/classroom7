@@ -1,0 +1,6 @@
+go version go1.22.12 linux/amd64
+linux
+amd64
+cpu: AMD EPYC 9V74 80-Core Processor
+Command: make bench-all BENCHTIME=20ms BENCHCOUNT=3 BENCHCPU=1
+All four groups ran sequentially; no renderer or parallel test ran during measurements.

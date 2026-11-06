@@ -2,6 +2,7 @@ package simplesort
 
 import (
 	"reflect"
+	"slices"
 	"testing"
 )
 
@@ -18,20 +19,12 @@ func TestSorts(t *testing.T) {
 				values := append([]int(nil), input...)
 				sortFn(values)
 				want := append([]int(nil), input...)
-				standardInsertion(want)
+				slices.Sort(want)
 				if !reflect.DeepEqual(values, want) {
 					t.Fatalf("sort(%v) = %v; want %v", input, values, want)
 				}
 			}
 		})
-	}
-}
-
-func standardInsertion(values []int) {
-	for i := 1; i < len(values); i++ {
-		for j := i; j > 0 && values[j] < values[j-1]; j-- {
-			values[j], values[j-1] = values[j-1], values[j]
-		}
 	}
 }
 

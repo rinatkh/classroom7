@@ -7,17 +7,22 @@ BIN_DIR := bin
 COVERAGE_FILE ?= coverage.out
 COVERAGE_THRESHOLD ?= 90.0
 PACKAGE_FILE ?= $(BIN_DIR)/classroom7-linux-amd64.tar.gz
-CMDS := 01_complexity 02_search 03_maps 04_insert_delete 05_simple_sorts 06_quicksort 07_benchmark_debug 08_leetcode
+CMDS := 01_complexity 02_search 03_maps 04_insert_delete 05_simple_sorts 06_quicksort 07_benchmark_debug 08_leetcode 09_mergesort
 
-.PHONY: help deps-check mod-check fmt fmt-check vet test test-unit test-integration test-race coverage coverage-check build package clean run-all ci bench bench-search bench-sort trace-quicksort $(addprefix run-,$(CMDS))
+.PHONY: help deps-check mod-check fmt fmt-check vet test test-unit test-integration test-race coverage coverage-check build package clean run-all ci bench bench-all bench-search bench-sort bench-structures bench-memory test-leetcode trace-mergesort trace-quicksort $(addprefix run-,$(CMDS))
+
+BENCHTIME ?= 100ms
+BENCHCOUNT ?= 3
+BENCHCPU ?= 1
+BENCHFLAGS := -benchmem -benchtime=$(BENCHTIME) -count=$(BENCHCOUNT) -cpu=$(BENCHCPU)
 
 help:
 	@echo "Доступные команды:"
-	@echo "  make run-all          - запустить восемь примеров урока"
+	@echo "  make run-all          - запустить девять примеров урока"
 	@echo "  make trace-quicksort  - показать состояния Quick Sort по шагам"
 	@echo "  make bench-search     - сравнить линейный, бинарный поиск и map"
 	@echo "  make bench-sort       - сравнить учебные и библиотечную сортировки"
-	@echo "  make bench            - выполнить все benchmark-тесты"
+	@echo "  make bench-all        - поиск, сортировки, структуры и allocation"
 	@echo "  make test-unit        - запустить модульные тесты"
 	@echo "  make test-integration - запустить интеграционные тесты команд"
 	@echo "  make ci               - выполнить полную локальную проверку"
@@ -54,10 +59,10 @@ test-integration:
 	$(GO) test $(INTEGRATION_PACKAGES)
 
 test-race:
-	$(GO) test -race $(UNIT_PACKAGES)
+	$(GO) test -race $(GO_PACKAGES)
 
 coverage:
-	$(GO) test $(UNIT_PACKAGES) -covermode=atomic -coverprofile=$(COVERAGE_FILE)
+	$(GO) test $(UNIT_PACKAGES) -coverpkg=./internal/... -covermode=atomic -coverprofile=$(COVERAGE_FILE)
 	$(GO) tool cover -func=$(COVERAGE_FILE)
 
 coverage-check: coverage
@@ -68,7 +73,7 @@ coverage-check: coverage
 	}'
 
 run-all:
-	@for cmd in $(CMDS); do \
+	@set -e; for cmd in $(CMDS); do \
 		echo "== $$cmd =="; \
 		$(GO) run ./cmd/$$cmd; \
 	done
@@ -90,20 +95,40 @@ run-07_benchmark_debug:
 run-08_leetcode:
 	$(GO) run ./cmd/08_leetcode
 
+run-09_mergesort:
+	$(GO) run ./cmd/09_mergesort
+
+trace-mergesort: run-09_mergesort
+
+test-leetcode:
+	$(GO) test ./internal/leetcode
+
 trace-quicksort: run-07_benchmark_debug
 
 bench-search:
-	$(GO) test ./internal/benchmarkdebug -run '^$$' -bench '^BenchmarkSearch' -benchmem -count=3
+	$(GO) test ./internal/benchmarkdebug -run '^$$' -bench '^BenchmarkSearch' $(BENCHFLAGS)
 
 bench-sort:
-	$(GO) test ./internal/benchmarkdebug -run '^$$' -bench '^BenchmarkSort' -benchmem -count=3
+	$(GO) test ./internal/benchmarkdebug -run '^$$' -bench '^BenchmarkSort$$' $(BENCHFLAGS)
 
-bench:
-	$(GO) test ./internal/benchmarkdebug -run '^$$' -bench . -benchmem -count=3
+bench-structures:
+	$(GO) test ./internal/benchmarkdebug -run '^$$' -bench '^BenchmarkStructures$$' $(BENCHFLAGS)
+
+bench-memory:
+	$(GO) test ./internal/benchmarkdebug -run '^$$' -bench '^BenchmarkMemory$$' $(BENCHFLAGS)
+
+# Подзадачи выполняются последовательно даже при make -j: benchmark не конкурируют.
+bench-all:
+	$(MAKE) bench-search
+	$(MAKE) bench-sort
+	$(MAKE) bench-structures
+	$(MAKE) bench-memory
+
+bench: bench-all
 
 build:
 	@mkdir -p $(BIN_DIR)
-	@for cmd in $(CMDS); do $(GO) build -o $(BIN_DIR)/$$cmd ./cmd/$$cmd; done
+	@set -e; for cmd in $(CMDS); do $(GO) build -buildvcs=false -o $(BIN_DIR)/$$cmd ./cmd/$$cmd; done
 
 package: build
 	@mkdir -p $(BIN_DIR)

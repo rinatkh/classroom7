@@ -65,7 +65,7 @@ func TestSearchInsert(t *testing.T) {
 }
 
 func TestExample(t *testing.T) {
-	const want = "target=23: linear index=5 comparisons=6; binary index=5 comparisons=2; insert(20)=5"
+	const want = "target=23: linear index=5 comparisons=6; binary index=5 comparisons=2; insert(20)=5; slices.BinarySearch=5/true"
 	if got := Example(); got != want {
 		t.Fatalf("Example() = %q; want %q", got, want)
 	}

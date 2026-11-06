@@ -10,16 +10,11 @@ type Report struct {
 	Writes      int
 }
 
-// BubbleSort несколько раз проходит слева направо и меняет соседей местами,
-// если они стоят в неправильном порядке. После каждого прохода один из самых
-// больших элементов оказывается справа на окончательной позиции.
-//
-// Худшее и среднее время — O(n²), дополнительная память — O(1).
-// С флагом swapped уже отсортированный вход завершается за O(n).
-//
-// Как не нужно: не используйте пузырьковую сортировку для больших рабочих
-// данных только потому, что её код короткий. Здесь она нужна, чтобы увидеть шаги.
-func BubbleSort(values []int) Report {
+// BubbleSort сортирует на месте обменами соседей; равные не переставляет.
+// Ранний выход даёт O(n) на sorted; среднее/худшее O(n²), память O(1).
+func BubbleSort(values []int) Report { return bubbleSort(values, nil) }
+
+func bubbleSort(values []int, observe func()) Report {
 	report := Report{}
 	for end := len(values) - 1; end > 0; end-- {
 		swapped := false
@@ -31,6 +26,9 @@ func BubbleSort(values []int) Report {
 				swapped = true
 			}
 		}
+		if observe != nil {
+			observe()
+		}
 		if !swapped {
 			break
 		}
@@ -41,31 +39,25 @@ func BubbleSort(values []int) Report {
 // BubbleTrace возвращает копию среза после каждого полного прохода.
 // Копии намеренно требуют O(n²) памяти в худшем случае: это цена визуализации,
 // а не память самого BubbleSort.
-func BubbleTrace(values []int) [][]int {
+func BubbleTrace(values []int) [][]int { return trace(values, bubbleSort) }
+
+// SelectionTrace сохраняет начальное состояние и результат каждого выбора минимума.
+func SelectionTrace(values []int) [][]int { return trace(values, selectionSort) }
+
+// InsertionTrace сохраняет начальное состояние и результат каждой вставки в префикс.
+func InsertionTrace(values []int) [][]int { return trace(values, insertionSort) }
+
+func trace(values []int, algorithm func([]int, func()) Report) [][]int {
 	states := [][]int{append([]int(nil), values...)}
-	for end := len(values) - 1; end > 0; end-- {
-		swapped := false
-		for index := 0; index < end; index++ {
-			if values[index] > values[index+1] {
-				values[index], values[index+1] = values[index+1], values[index]
-				swapped = true
-			}
-		}
-		states = append(states, append([]int(nil), values...))
-		if !swapped {
-			break
-		}
-	}
+	algorithm(values, func() { states = append(states, append([]int(nil), values...)) })
 	return states
 }
 
-// SelectionSort на каждой позиции ищет минимальное значение в правой части
-// и ставит его на текущую позицию. Сравнений всегда порядка n², даже если вход
-// уже отсортирован. Дополнительная память — O(1).
-//
-// Как не нужно: выбор минимального элемента не делает алгоритм O(n), потому что
-// для каждой позиции оставшаяся часть просматривается заново.
-func SelectionSort(values []int) Report {
+// SelectionSort ставит минимум оставшегося хвоста на очередную позицию.
+// Всегда n*(n-1)/2 сравнений, память O(1). Вариант с обменом неустойчив.
+func SelectionSort(values []int) Report { return selectionSort(values, nil) }
+
+func selectionSort(values []int, observe func()) Report {
 	report := Report{}
 	for position := 0; position < len(values)-1; position++ {
 		minimum := position
@@ -79,17 +71,19 @@ func SelectionSort(values []int) Report {
 			values[position], values[minimum] = values[minimum], values[position]
 			report.Writes += 2
 		}
+		if observe != nil {
+			observe()
+		}
 	}
 	return report
 }
 
-// InsertionSort поддерживает отсортированную левую часть и вставляет в неё
-// следующий элемент. Для почти отсортированных маленьких данных работает хорошо.
-// Худшее время — O(n²), лучший случай — O(n), дополнительная память — O(1).
-//
-// Как не нужно: после сдвигов обязательно записать current в найденную позицию.
-// Иначе значение будет потеряно, а один элемент продублируется.
-func InsertionSort(values []int) Report {
+// InsertionSort вставляет current в отсортированный левый префикс.
+// Равные не сдвигаются через current: сортировка устойчива.
+// Время O(n+I), где I — число инверсий; память O(1).
+func InsertionSort(values []int) Report { return insertionSort(values, nil) }
+
+func insertionSort(values []int, observe func()) Report {
 	report := Report{}
 	for position := 1; position < len(values); position++ {
 		current := values[position]
@@ -107,6 +101,9 @@ func InsertionSort(values []int) Report {
 
 		values[insert] = current
 		report.Writes++
+		if observe != nil {
+			observe()
+		}
 	}
 	return report
 }

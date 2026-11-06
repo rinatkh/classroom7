@@ -19,6 +19,7 @@ func TestLesson7Commands(t *testing.T) {
 		{name: "06_quicksort", want: "Quick Sort: [2 3 5 7 9]"},
 		{name: "07_benchmark_debug", want: "Измерения: make bench-search / make bench-sort"},
 		{name: "08_leetcode", want: "LeetCode 704: target=9 -> 4"},
+		{name: "09_mergesort", want: "Merge Sort: [1 2 4 5]"},
 	}
 
 	for _, test := range commands {

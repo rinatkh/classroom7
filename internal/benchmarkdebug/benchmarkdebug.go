@@ -25,11 +25,8 @@ func FormatTrace(steps []quicksort.Step) string {
 	return strings.TrimSuffix(builder.String(), "\n")
 }
 
-// Example строит полную трассировку маленького входа.
-//
-// Как не нужно: эту функцию нельзя использовать для измерения скорости Sort.
-// Создание строк и копий намеренно замедляет выполнение. Для скорости служат
-// BenchmarkSearch и BenchmarkSort в benchmarkdebug_test.go.
+// Example форматирует trace малого входа; копии и строки не входят в benchmark.
+// Измерения находятся в lab_test.go.
 func Example() string {
 	values := []int{7, 2, 9, 3, 5}
 	stats, steps := quicksort.SortWithTrace(values)
