@@ -1,0 +1,66 @@
+goos: linux
+goarch: amd64
+pkg: github.com/rinatkh/classroom7/internal/benchmarkdebug
+cpu: AMD EPYC 9V74 80-Core Processor
+BenchmarkSearch/linear/last/n=100         	 3838544	        32.96 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=100         	 3739840	        31.95 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=100         	 3662823	        31.57 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=100         	15903432	         7.058 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=100         	17111995	         7.581 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=100         	16892709	         6.785 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=100            	10371058	        10.31 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=100            	11766780	         9.965 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=100            	11053485	         9.911 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=100  	13207600	         8.398 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=100  	13964937	         8.288 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=100  	14411287	         8.207 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=1000        	  353466	       316.4 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=1000        	  375993	       307.9 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=1000        	  334741	       328.4 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=1000        	 9673125	        11.84 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=1000        	 9793288	        11.82 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=1000        	 9877539	        11.81 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=1000           	14568297	         8.590 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=1000           	14356845	         7.866 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=1000           	15881280	         7.889 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=1000 	12753087	         9.671 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=1000 	12144922	        10.20 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=1000 	12740721	         9.643 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=10000       	   40705	      2970 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=10000       	   37612	      3405 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=10000       	   37519	      3125 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=10000       	 6698613	        18.49 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=10000       	 6616922	        18.56 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=10000       	 6565714	        18.63 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=10000          	14231988	         8.320 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=10000          	13975820	         8.739 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=10000          	14024664	         8.505 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=10000         	 8948206	        13.43 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=10000         	 9724342	        12.97 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=10000         	 9201682	        13.57 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=100000               	    3970	     29872 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=100000               	    4194	     29035 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=100000               	    3861	     31552 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=100000               	 4526337	        29.01 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=100000               	 4379388	        26.79 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=100000               	 4198689	        26.28 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=100000                  	11127124	         9.718 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=100000                  	11218815	         9.312 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=100000                  	14212322	         9.334 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=100000        	 7223684	        16.72 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=100000        	 7471146	        16.25 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=100000        	 7274850	        16.04 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=1000000              	     402	    299811 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=1000000              	     412	    329398 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/linear/last/n=1000000              	     418	    292590 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=1000000              	 4007340	        29.97 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=1000000              	 4033106	        29.77 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/binary/last/n=1000000              	 3674688	        31.41 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=1000000                 	15031076	         8.452 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=1000000                 	15059714	         8.548 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/map/last/n=1000000                 	14408164	         8.548 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=1000000       	 5019843	        20.84 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=1000000       	 6191614	        19.41 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSearch/slices-binary/last/n=1000000       	 5948848	        20.12 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/rinatkh/classroom7/internal/benchmarkdebug	9.383s

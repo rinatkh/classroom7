@@ -1,0 +1,36 @@
+goos: linux
+goarch: amd64
+pkg: github.com/rinatkh/classroom7/internal/benchmarkdebug
+cpu: AMD EPYC 9V74 80-Core Processor
+BenchmarkSearchBuild/map-build/n=100         	    4663	      4290 ns/op	    2957 B/op	       7 allocs/op
+BenchmarkSearchBuild/map-build/n=100         	    6327	      4190 ns/op	    2954 B/op	       7 allocs/op
+BenchmarkSearchBuild/map-build/n=100         	    4486	     12762 ns/op	    2956 B/op	       7 allocs/op
+BenchmarkSearchBuild/clone-sort/n=100        	   30123	       765.3 ns/op	     896 B/op	       1 allocs/op
+BenchmarkSearchBuild/clone-sort/n=100        	   27655	       759.1 ns/op	     896 B/op	       1 allocs/op
+BenchmarkSearchBuild/clone-sort/n=100        	   29245	       775.4 ns/op	     896 B/op	       1 allocs/op
+BenchmarkSearchBuild/map-build/n=1000        	     630	     34425 ns/op	   41147 B/op	       7 allocs/op
+BenchmarkSearchBuild/map-build/n=1000        	     723	     45171 ns/op	   41143 B/op	       7 allocs/op
+BenchmarkSearchBuild/map-build/n=1000        	     577	     37601 ns/op	   41143 B/op	       7 allocs/op
+BenchmarkSearchBuild/clone-sort/n=1000       	    1777	     15128 ns/op	    8192 B/op	       1 allocs/op
+BenchmarkSearchBuild/clone-sort/n=1000       	    1789	     14133 ns/op	    8192 B/op	       1 allocs/op
+BenchmarkSearchBuild/clone-sort/n=1000       	    1833	     14012 ns/op	    8192 B/op	       1 allocs/op
+BenchmarkSearchBuild/map-build/n=10000       	      76	    371758 ns/op	  321782 B/op	      12 allocs/op
+BenchmarkSearchBuild/map-build/n=10000       	      73	    356004 ns/op	  321783 B/op	      12 allocs/op
+BenchmarkSearchBuild/map-build/n=10000       	      74	    375132 ns/op	  321752 B/op	      12 allocs/op
+BenchmarkSearchBuild/clone-sort/n=10000      	      45	    511404 ns/op	   81920 B/op	       1 allocs/op
+BenchmarkSearchBuild/clone-sort/n=10000      	      40	    505382 ns/op	   81920 B/op	       1 allocs/op
+BenchmarkSearchBuild/clone-sort/n=10000      	      43	    545722 ns/op	   81920 B/op	       1 allocs/op
+BenchmarkSearchBuild/map-build/n=100000      	       5	   4093617 ns/op	 2781531 B/op	    1419 allocs/op
+BenchmarkSearchBuild/map-build/n=100000      	       6	   4604893 ns/op	 2781440 B/op	    1419 allocs/op
+BenchmarkSearchBuild/map-build/n=100000      	       5	   4137180 ns/op	 2783316 B/op	    1432 allocs/op
+BenchmarkSearchBuild/clone-sort/n=100000     	       4	   7816023 ns/op	  802816 B/op	       1 allocs/op
+BenchmarkSearchBuild/clone-sort/n=100000     	       3	   6930328 ns/op	  802816 B/op	       1 allocs/op
+BenchmarkSearchBuild/clone-sort/n=100000     	       3	   7299534 ns/op	  802816 B/op	       1 allocs/op
+BenchmarkSearchBuild/map-build/n=1000000     	       1	 167921658 ns/op	40125656 B/op	      15 allocs/op
+BenchmarkSearchBuild/map-build/n=1000000     	       1	 177704215 ns/op	40125656 B/op	      15 allocs/op
+BenchmarkSearchBuild/map-build/n=1000000     	       1	 146949216 ns/op	40125656 B/op	      15 allocs/op
+BenchmarkSearchBuild/clone-sort/n=1000000    	       1	  95391907 ns/op	 8003584 B/op	       1 allocs/op
+BenchmarkSearchBuild/clone-sort/n=1000000    	       1	  77859237 ns/op	 8003584 B/op	       1 allocs/op
+BenchmarkSearchBuild/clone-sort/n=1000000    	       1	  74812720 ns/op	 8003584 B/op	       1 allocs/op
+PASS
+ok  	github.com/rinatkh/classroom7/internal/benchmarkdebug	1.631s

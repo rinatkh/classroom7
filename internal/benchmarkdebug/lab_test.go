@@ -2,8 +2,10 @@ package benchmarkdebug
 
 import (
 	"fmt"
+	"os"
 	"runtime"
 	"slices"
+	"strconv"
 	"testing"
 
 	"github.com/rinatkh/classroom7/internal/dataset"
@@ -79,6 +81,9 @@ func BenchmarkSearch(b *testing.B) {
 					b.StopTimer()
 					if searchSink != (scenario != "missing") {
 						b.Fatal("неверный результат поиска")
+					}
+					if searchSink && (indexSink < 0 || indexSink >= len(values) || values[indexSink] != target) {
+						b.Fatal("индекс не указывает на найденное значение")
 					}
 					runtime.KeepAlive(values)
 					runtime.KeepAlive(index)
@@ -275,6 +280,11 @@ func resetBatch(b *testing.B, reset, operation func(int), check func(int) bool) 
 // Вставка в середину среза сохраняет порядок; map вставляет новую пару по ключу.
 func BenchmarkStructures(b *testing.B) {
 	for _, n := range []int{100, 1000} {
+		// У имён b.Run две глубины; фильтр размера применяется до подготовки,
+		// вне таймера. Без переменной окружения матрица остаётся исходной.
+		if filter := os.Getenv("LESSON7_BENCH_N"); filter != "" && filter != strconv.Itoa(n) {
+			continue
+		}
 		source := make([]int, n)
 		for i := range source {
 			source[i] = i

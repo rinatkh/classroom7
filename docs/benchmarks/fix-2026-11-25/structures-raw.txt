@@ -1,0 +1,72 @@
+goos: linux
+goarch: amd64
+pkg: github.com/rinatkh/classroom7/internal/benchmarkdebug
+cpu: AMD EPYC 9V74 80-Core Processor
+BenchmarkStructures/value-lookup/slice-linear/n=100         	  182550	        35.81 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/value-lookup/slice-linear/n=100         	  167419	        32.48 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/value-lookup/slice-linear/n=100         	  179407	        30.30 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/value-lookup/map-key/n=100              	  516301	        10.58 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/value-lookup/map-key/n=100              	  591949	        11.31 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/value-lookup/map-key/n=100              	  586732	        11.03 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/known-index/slice-read/n=100            	10160329	         0.5684 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/known-index/slice-read/n=100            	 9039261	         0.5708 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/known-index/slice-read/n=100            	11082378	         0.5585 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-insert-ordered/n=100              	  335581	        19.77 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-insert-ordered/n=100              	  334660	        18.36 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-insert-ordered/n=100              	  340039	        19.54 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-delete-ordered/n=100              	  388075	        17.95 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-delete-ordered/n=100              	  324411	        17.96 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-delete-ordered/n=100              	  377794	        17.17 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-delete-unordered/n=100            	 1229145	         5.287 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-delete-unordered/n=100            	 1000000	         5.053 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-delete-unordered/n=100            	 1000000	         5.017 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-update-known-index/n=100          	 1446231	         4.231 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-update-known-index/n=100          	 1481833	         4.364 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-update-known-index/n=100          	 1353913	         6.202 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-update-by-key/n=100               	   86406	        64.73 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-update-by-key/n=100               	   90043	        68.85 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-update-by-key/n=100               	   98312	        63.05 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-insert-key/n=100                    	  304382	        20.48 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-insert-key/n=100                    	  268557	        28.26 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-insert-key/n=100                    	  255171	        21.53 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-delete-key/n=100                    	  414456	        15.89 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-delete-key/n=100                    	  363867	        16.33 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-delete-key/n=100                    	  370653	        23.18 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-update-key/n=100                    	  292929	        19.98 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-update-key/n=100                    	  306367	        26.74 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-update-key/n=100                    	  204376	        29.16 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/value-lookup/slice-linear/n=1000        	   19422	       295.5 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/value-lookup/slice-linear/n=1000        	   20946	       292.7 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/value-lookup/slice-linear/n=1000        	   18464	       330.9 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/value-lookup/map-key/n=1000             	  961045	         6.383 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/value-lookup/map-key/n=1000             	  965685	         6.552 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/value-lookup/map-key/n=1000             	  865240	         6.443 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/known-index/slice-read/n=1000           	10756060	         0.5597 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/known-index/slice-read/n=1000           	11082788	         0.5693 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/known-index/slice-read/n=1000           	10453890	         0.5562 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-insert-ordered/n=1000             	   79027	        76.21 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-insert-ordered/n=1000             	   80298	        87.72 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-insert-ordered/n=1000             	   79646	        81.35 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-delete-ordered/n=1000             	   68116	        77.66 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-delete-ordered/n=1000             	   78931	        80.20 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-delete-ordered/n=1000             	   82190	        93.01 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-delete-unordered/n=1000           	 1000000	        14.57 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-delete-unordered/n=1000           	  942936	         7.693 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-delete-unordered/n=1000           	 1000000	         6.776 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-update-known-index/n=1000         	 1000000	         6.006 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-update-known-index/n=1000         	 1119895	         5.316 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-update-known-index/n=1000         	 1000000	         5.944 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-update-by-key/n=1000              	    8870	       939.5 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-update-by-key/n=1000              	    8246	       792.7 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/slice-update-by-key/n=1000              	    8697	       738.7 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-insert-key/n=1000                   	  214777	        27.55 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-insert-key/n=1000                   	  260884	        23.57 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-insert-key/n=1000                   	  262149	        25.79 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-delete-key/n=1000                   	  334564	        28.44 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-delete-key/n=1000                   	  394101	        17.04 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-delete-key/n=1000                   	  363345	        15.10 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-update-key/n=1000                   	  334321	        18.03 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-update-key/n=1000                   	  347289	        17.57 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStructures/map-update-key/n=1000                   	  352302	        17.88 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/rinatkh/classroom7/internal/benchmarkdebug	5.033s

@@ -1,0 +1,30 @@
+goos: linux
+goarch: amd64
+pkg: github.com/rinatkh/classroom7/internal/benchmarkdebug
+cpu: AMD EPYC 9V74 80-Core Processor
+BenchmarkMemory/slice-build/n=100         	  243001	        97.04 ns/op	     896 B/op	       1 allocs/op
+BenchmarkMemory/slice-build/n=100         	  244399	        97.61 ns/op	     896 B/op	       1 allocs/op
+BenchmarkMemory/slice-build/n=100         	  220812	        99.93 ns/op	     896 B/op	       1 allocs/op
+BenchmarkMemory/map-index-build/n=100     	    6595	      4099 ns/op	    2955 B/op	       7 allocs/op
+BenchmarkMemory/map-index-build/n=100     	    7603	      4304 ns/op	    2950 B/op	       7 allocs/op
+BenchmarkMemory/map-index-build/n=100     	    6963	      3930 ns/op	    2958 B/op	       7 allocs/op
+BenchmarkMemory/slice-build/n=1000        	   29395	       708.5 ns/op	    8192 B/op	       1 allocs/op
+BenchmarkMemory/slice-build/n=1000        	   33478	       763.4 ns/op	    8192 B/op	       1 allocs/op
+BenchmarkMemory/slice-build/n=1000        	   29828	       704.8 ns/op	    8192 B/op	       1 allocs/op
+BenchmarkMemory/map-index-build/n=1000    	     714	     36540 ns/op	   41143 B/op	       7 allocs/op
+BenchmarkMemory/map-index-build/n=1000    	     676	     33909 ns/op	   41147 B/op	       7 allocs/op
+BenchmarkMemory/map-index-build/n=1000    	     726	     33203 ns/op	   41147 B/op	       7 allocs/op
+BenchmarkMemory/slice-build/n=10000       	    4310	      5437 ns/op	   81920 B/op	       1 allocs/op
+BenchmarkMemory/slice-build/n=10000       	    3504	      6689 ns/op	   81920 B/op	       1 allocs/op
+BenchmarkMemory/slice-build/n=10000       	    4147	      6994 ns/op	   81920 B/op	       1 allocs/op
+BenchmarkMemory/map-index-build/n=10000   	      82	    389728 ns/op	  321780 B/op	      12 allocs/op
+BenchmarkMemory/map-index-build/n=10000   	      80	    350156 ns/op	  321780 B/op	      12 allocs/op
+BenchmarkMemory/map-index-build/n=10000   	      75	    345862 ns/op	  321752 B/op	      12 allocs/op
+BenchmarkMemory/slice-build/n=100000      	     492	     48668 ns/op	  802816 B/op	       1 allocs/op
+BenchmarkMemory/slice-build/n=100000      	     500	     45878 ns/op	  802816 B/op	       1 allocs/op
+BenchmarkMemory/slice-build/n=100000      	     446	     48603 ns/op	  802816 B/op	       1 allocs/op
+BenchmarkMemory/map-index-build/n=100000  	       4	   5031903 ns/op	 2781956 B/op	    1422 allocs/op
+BenchmarkMemory/map-index-build/n=100000  	       6	   4152634 ns/op	 2781080 B/op	    1416 allocs/op
+BenchmarkMemory/map-index-build/n=100000  	       6	   4389750 ns/op	 2787056 B/op	    1458 allocs/op
+PASS
+ok  	github.com/rinatkh/classroom7/internal/benchmarkdebug	0.864s
