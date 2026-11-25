@@ -1,0 +1,56 @@
+name: Classroom 7 CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  GOTOOLCHAIN: local
+  CGO_ENABLED: '1'
+
+jobs:
+  ci:
+    name: Tests, race, coverage and build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Получить код
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Установить Go из go.mod
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+          cache: false
+
+      - name: Показать версию Go
+        run: go version
+
+      - name: Проверить зависимости, формат, vet, tests, race и coverage; собрать архив
+        run: make ci
+
+      # Один вызов проверяет корректность всех веток, а не скорость алгоритмов.
+      - name: Проверить все benchmark-сценарии
+        run: make bench-all BENCHTIME=1x BENCHCOUNT=1 BENCHCPU=1
+
+      - name: Сохранить coverage, benchmark-отчёты и Linux-сборку
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: classroom7-linux-amd64-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            coverage.out
+            bin/classroom7-linux-amd64.tar.gz
+            bin/benchmarks/
+          retention-days: 7
+          if-no-files-found: warn
